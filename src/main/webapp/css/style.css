@@ -1,7 +1,6 @@
-img {
-    max-height: 600px;
-}
-
+/*------------------------------------------*/
+/*----------REUSABLE COMPONENT---------------*/
+/*------------------------------------------*/
 body {
     background-image: linear-gradient(
             45deg,
@@ -15,7 +14,58 @@ body {
     background-attachment: fixed;
 }
 
-.card:hover,
-.card:active {
-    cursor: pointer;
+.movie-title {
+    color: rgb(199, 199, 25);
+    height: 50px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* number of lines to show */
+    -webkit-box-orient: vertical;
+}
+
+/*------------------------------------------*/
+/*----------HOME PAGE-----------------------*/
+/*------------------------------------------*/
+
+.movie-description {
+    height: 70px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* number of lines to show */
+    -webkit-box-orient: vertical;
+}
+
+.movie-cast {
+    height: 50px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* number of lines to show */
+    -webkit-box-orient: vertical;
+}
+
+.imgPlaceHolder {
+    background-color: darkgray;
+    height: 300px;
+    width: auto;
+}
+
+/*------------------------------------------*/
+/*----------MOVIE PAGE----------------------*/
+/*------------------------------------------*/
+
+.movie-poster {
+    max-height: 600px;
+    width: auto;
+}
+
+hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 1em 0;
+    padding: 0;
 }
