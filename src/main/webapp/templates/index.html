@@ -1,17 +1,9 @@
 <!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0">
-    <script src="https://kit.fontawesome.com/488c15c75f.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" th:href="@{/css/style.css}" href="../css/style.css">
-    <title th:text="#{site_name}"></title>
-</head>
+<head th:insert="~{fragments/frontend::head}">
 <body>
-<header th:insert="~{fragments/header}"></header>
+<header th:insert="~{fragments/frontend::header}"></header>
+
 <main class="container">
     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">
@@ -79,16 +71,21 @@
             </div>
         </div>
     </div>
+    <nav th:if="${totalPages>=2}">
+        <ul class="pagination justify-content-center mt-3">
+            <li th:if="${page >1}" class="page-item"><a class="page-link" href="#" th:href="@{${url}(page=1)}">First</a></li>
+            <li th:if="${page >1}" class="page-item"><a class="page-link" th:href="@{${url}(page=${page}-1)}">&laquo;</a></li>
+            <li th:if="${page > 2}" class="page-item"><a class="page-link" th:href="@{${url}(page=${page}-2)}"><span th:text="${page}-2">1</span></a></li>
+            <li th:if="${page > 1}" class="page-item"><a class="page-link" th:href="@{${url}(page=${page}-1)}"><span th:text="${page}-1">2</span></a></li>
+            <li class="page-item active"><span class="page-link" th:text="${page}">3</span></li>
+            <li th:if="${page < totalPages - 1}" class="page-item"><a class="page-link" th:href="@{${url}(page=${page}+1)}"><span th:text="${page}+1">4</span></a></li>
+            <li th:if="${page < totalPages - 2}" class="page-item"><a class="page-link" th:href="@{${url}(page=${page}+2)}"><span th:text="${page}+2">5</span></a></li>
+            <li th:if="${page < totalPages}" class="page-item"><a class="page-link" th:href="@{${url}(page=${page}+1)}">&raquo;</a></li>
+            <li th:if="${page < totalPages}" class="page-item"><a class="page-link" th:href="@{${url}(page=${totalPages})}">Last</a></li>
+        </ul>
+    </nav>
 </main>
-<footer th:insert="~{/fragments/footer}"></footer>
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-        crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-        crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-        crossorigin="anonymous"></script>
+
+<footer th:insert="~{/fragments/frontend::footer}"></footer>
 </body>
 </html>

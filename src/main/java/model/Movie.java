@@ -9,7 +9,7 @@ import java.util.List;
 public class Movie {
     private String _id;
     private String title;
-    private int year;
+    private String year;
     private List<String> cast;
     private String fullPlot;
     private String lastUpdated;

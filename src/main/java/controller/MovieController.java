@@ -8,7 +8,6 @@ import service.MovieService;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.List;
 
 public class MovieController implements IController {
 
@@ -16,8 +15,6 @@ public class MovieController implements IController {
     public void process(HttpServletRequest request, HttpServletResponse response, ServletContext servletContext, ITemplateEngine templateEngine) throws Exception {
         WebContext ctx = new WebContext(request,response, servletContext, request.getLocale());
         String id = request.getParameter("id");
-        List<String> genres = MovieService.getGenresForHeader();
-        ctx.setVariable("genres", genres);
         Movie movie = MovieService.getMovieByID(id);
         ctx.setVariable("movie", movie);
         templateEngine.process("movie", ctx, response.getWriter());

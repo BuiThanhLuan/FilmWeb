@@ -12,18 +12,11 @@ import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 import static com.mongodb.client.model.Filters.eq;
 
 public class MovieDAO extends AbsDAO {
-
-    public static AggregateIterable<Document> getTopGenres(int limit) {
-        MongoCollection<Document> movies = getDB().getCollection("movies");
-        return movies.aggregate(Arrays.asList(new Document("$unwind", "$genres"),
-                new Document("$group", new Document("_id", "$genres").append("numOfMovies",new Document("$sum", 1L))),
-                new Document("$sort", new Document("numOfMovies", -1L)),
-                new Document("$limit",limit)));
-    }
 
     public static DistinctIterable<String> getGenres() {
         MongoCollection<Document> movies = getDB().getCollection("movies");
@@ -34,6 +27,13 @@ public class MovieDAO extends AbsDAO {
         MongoCollection<Document> movies = getDB().getCollection("movies");
         List<Movie> list = new ArrayList<>();
         movies.find().limit(limit).forEach(d -> list.add(docToMovie(d)));
+        return list;
+    }
+
+    public List<Movie> searchMovies(Document filter, Document sort, int limit, int skip) {
+        MongoCollection<Document> movies = getDB().getCollection("movies");
+        List<Movie> list = new ArrayList<>();
+        movies.find(filter).sort(sort).limit(limit).skip(skip).forEach(d -> list.add(docToMovie(d)));
         return list;
     }
 
@@ -57,7 +57,7 @@ public class MovieDAO extends AbsDAO {
         movie.setCountries((List<String>) document.get("countries"));
         movie.setGenres((List<String>) document.get("genres"));
         movie.setPoster(document.getString("poster"));
-        movie.setYear(document.getInteger("year"));
+        movie.setYear(String.valueOf(document.get("year")));
         return movie;
     }
 }
