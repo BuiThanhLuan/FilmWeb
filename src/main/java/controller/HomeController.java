@@ -18,6 +18,7 @@ public class HomeController implements IController {
         String value = null;
         String text = null;
         String url = "/?";
+
         if (request.getParameter("by") != null) {
             by = request.getParameter("by").trim();
             url = url + "&by=" + by;
@@ -35,6 +36,20 @@ public class HomeController implements IController {
         long totalPages = new MovieService().getTotalPages(by, value, text);
         ctx.setVariable("totalPages", totalPages);
 
+        boolean showCarousel = true;
+        boolean showBreadcrumb = true;
+        if (by != null || text != null) {  //Filter
+            showCarousel = false;
+            if (by != null)
+                ctx.setVariable("breadCrumb", value);
+            else
+                ctx.setVariable("breadCrumb", "Search result for: <b>" + text + "</b>");
+        } else { //Home
+            showBreadcrumb = false;
+        }
+        ctx.setVariable("showCarousel", showCarousel);
+        ctx.setVariable("showBreadcrumb", showBreadcrumb);
+
         int page = 1;
         if (request.getParameter("page") != null)
             page = Integer.parseInt(request.getParameter("page").trim());
@@ -45,6 +60,4 @@ public class HomeController implements IController {
         ctx.setVariable("list", list);
         templateEngine.process("index", ctx, response.getWriter());
     }
-
-
 }

@@ -4,7 +4,6 @@ import DAO.MovieDAO;
 import model.Movie;
 import org.bson.Document;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class MovieService {
@@ -20,11 +19,7 @@ public class MovieService {
         else
             sort.append("year", -1);
 
-        List<Movie> list = new MovieDAO().searchMovies(filter, sort, NUM_OF_MOVIE_ON_PAGE, (page - 1) * NUM_OF_MOVIE_ON_PAGE);
-        if (list == null) {
-            list = new ArrayList<>();
-        }
-        return list;
+        return MovieDAO.searchMovies(filter, sort, NUM_OF_MOVIE_ON_PAGE, (page - 1) * NUM_OF_MOVIE_ON_PAGE);
     }
 
     public static Movie getMovieByID(String id) {

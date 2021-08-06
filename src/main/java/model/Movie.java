@@ -1,15 +1,16 @@
 package model;
 
 import lombok.Data;
+import org.bson.types.ObjectId;
 
 import java.util.Date;
 import java.util.List;
 
 @Data
 public class Movie {
-    private String _id;
+    private ObjectId id;
     private String title;
-    private String year;
+    private int year;
     private List<String> cast;
     private String fullPlot;
     private String lastUpdated;

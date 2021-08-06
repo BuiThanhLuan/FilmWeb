@@ -1,20 +1,33 @@
 /*------------------------------------------*/
 /*----------REUSABLE COMPONENT---------------*/
 /*------------------------------------------*/
+::selection {
+    background-color: #181a1b !important;
+    color: #e8e6e3 !important;
+    box-sizing: border-box;
+}
+
 html {
+    font-family: "Lato", sans-serif;
     min-height: 100%;
+    border-color: #736b5e;
+    background-color: #181a1b !important;
+    color: #e8e6e3 !important;
 }
 
 body {
+    color: rgb(209, 205, 199) !important;
+    background-color: rgb(24, 26, 27);
+    position: relative;
     background-image: linear-gradient(
             45deg,
             rgba(2, 33, 64, 0.8) 55%,
             rgba(45, 95, 93, 0.8)
     ),
-    url("../images/image02.jpg");
+    url("../images/background.jpg");
     background-size: cover;
     background-position: center;
-    height: 100vh;
+    height: 100%;
     background-attachment: fixed;
 }
 
@@ -31,6 +44,8 @@ body {
 #footer {
     position: absolute;
     bottom: 0;
+    left: 0;
+    right: 0;
 }
 
 /*------------------------------------------*/
@@ -59,6 +74,11 @@ body {
     background-color: darkgray;
     height: 300px;
     width: auto;
+}
+
+.page-item {
+    background-color: #181a1b !important;
+    color: #007bff;
 }
 
 /*------------------------------------------*/

@@ -1,5 +1,6 @@
 package application;
 
+import controller.CommentController;
 import controller.HomeController;
 import controller.IController;
 import controller.MovieController;
@@ -15,7 +16,7 @@ import java.util.Map;
 public class MyApplication {
 
     public TemplateEngine templateEngine;
-    private Map<String, IController> controllersByURL;
+    private final Map<String, IController> controllersByURL;
 
     public MyApplication(final ServletContext servletContext) {
         super();
@@ -23,13 +24,14 @@ public class MyApplication {
         templateResolver.setTemplateMode(TemplateMode.HTML);
         templateResolver.setPrefix("/templates/");
         templateResolver.setSuffix(".html");
-        templateResolver.setCacheTTLMs(Long.valueOf(3600000L));
+        templateResolver.setCacheTTLMs(3600000L);
         templateResolver.setCacheable(true);
         this.templateEngine = new TemplateEngine();
         this.templateEngine.setTemplateResolver(templateResolver);
         this.controllersByURL = new HashMap<>();
         this.controllersByURL.put("/", new HomeController());
         this.controllersByURL.put("/movie", new MovieController());
+        this.controllersByURL.put("/comment", new CommentController());
     }
 
     public IController resolveControllerForRequest(final HttpServletRequest request) {
