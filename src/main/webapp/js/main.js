@@ -7,21 +7,6 @@ var firebaseConfig = {
     appId: "1:372226068349:web:1500522806c042c7888614",
     measurementId: "G-D61V6H9TG8"
 };
-
-
-function sendComment() {
-    var formElement = document.querySelector("form");
-    var formData = new FormData(formElement);
-    const user = firebase.auth().currentUser;
-    formData.append("name", user.displayName());
-    formData.append("email", user.email());
-
-    var request = new XMLHttpRequest();
-    var url = "${pageContext.request.contextPath}" + "/comment";
-    request.open("POST", url)
-    request.send(formData);
-}
-
 var ui
 $(function () {
     firebase.initializeApp(firebaseConfig);
