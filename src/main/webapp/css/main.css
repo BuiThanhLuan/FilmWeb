@@ -1,15 +1,9 @@
 /*------------------------------------------*/
 /*----------REUSABLE COMPONENT---------------*/
 /*------------------------------------------*/
-::selection {
-    background-color: #181a1b !important;
-    color: #e8e6e3 !important;
-    box-sizing: border-box;
-}
 
 html {
     font-family: "Lato", sans-serif;
-    min-height: 100%;
     border-color: #736b5e;
     background-color: #181a1b !important;
     color: #e8e6e3 !important;
@@ -27,7 +21,6 @@ body {
     url("../images/background.jpg");
     background-size: cover;
     background-position: center;
-    height: 100%;
     background-attachment: fixed;
 }
 
@@ -41,16 +34,15 @@ body {
     -webkit-box-orient: vertical;
 }
 
-#footer {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
+.dropdown-menu-center {
+    transform: translate(-28%, 0) !important;
 }
 
 /*------------------------------------------*/
 /*----------HOME PAGE-----------------------*/
 /*------------------------------------------*/
+
+
 
 .movie-description {
     height: 70px;
@@ -70,15 +62,15 @@ body {
     -webkit-box-orient: vertical;
 }
 
-.imgPlaceHolder {
-    background-color: darkgray;
-    height: 300px;
-    width: auto;
+.card-img-top {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    background: gray;
 }
 
-.page-item {
-    background-color: #181a1b !important;
-    color: #007bff;
+[class*='mdl-shadow'] {
+    box-shadow: none;
 }
 
 /*------------------------------------------*/
@@ -87,7 +79,8 @@ body {
 
 .movie-poster {
     max-height: 600px;
-    width: auto;
+    width: 100%;
+    object-fit: cover;
 }
 
 hr {
