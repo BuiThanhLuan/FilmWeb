@@ -8,6 +8,20 @@ var firebaseConfig = {
     measurementId: "G-D61V6H9TG8"
 };
 
+
+function sendComment() {
+    var formElement = document.querySelector("form");
+    var formData = new FormData(formElement);
+    const user = firebase.auth().currentUser;
+    formData.append("name", user.displayName());
+    formData.append("email", user.email());
+
+    var request = new XMLHttpRequest();
+    var url = "${pageContext.request.contextPath}" + "/comment";
+    request.open("POST", url)
+    request.send(formData);
+}
+
 var ui
 $(function () {
     firebase.initializeApp(firebaseConfig);
@@ -46,9 +60,9 @@ var uiConfig = {
         firebase.auth.EmailAuthProvider.PROVIDER_ID,
         firebase.auth.PhoneAuthProvider.PROVIDER_ID,
         firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-        firebase.auth.FacebookAuthProvider.PROVIDER_ID,
-        firebase.auth.GithubAuthProvider.PROVIDER_ID,
-        "microsoft.com",
+        // firebase.auth.FacebookAuthProvider.PROVIDER_ID,
+        // firebase.auth.GithubAuthProvider.PROVIDER_ID,
+        // "microsoft.com",
         firebaseui.auth.AnonymousAuthProvider.PROVIDER_ID
     ],
     callbacks: {
