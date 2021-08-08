@@ -20,13 +20,13 @@ public abstract class AbsDAO {
         if (db == null) {
             CodecRegistry pojoCodecRegistry = fromRegistries(MongoClientSettings.getDefaultCodecRegistry(),
                     fromProviders(PojoCodecProvider.builder().automatic(true).build()));
-            ConnectionString connectionString = new ConnectionString("mongodb+srv://luanit:root@started.yfgsv.mongodb.net/sample_mflix?retryWrites=true&w=majority");
+            ConnectionString connectionString = new ConnectionString("mongodb+srv://luanit:root@started.yfgsv.mongodb.net");
             MongoClientSettings settings = MongoClientSettings.builder()
                     .applyConnectionString(connectionString)
                     .codecRegistry(pojoCodecRegistry)
                     .build();
             MongoClient mongoClient = MongoClients.create(settings);
-            db = mongoClient.getDatabase("mflix");
+            db = mongoClient.getDatabase("sample_mflix");
         }
         return db;
     }

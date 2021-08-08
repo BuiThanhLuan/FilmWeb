@@ -45,6 +45,7 @@ body {
 
 
 .movie-description {
+    color: #e8e6e3;
     height: 70px;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -67,6 +68,10 @@ body {
     height: 400px;
     object-fit: cover;
     background: gray;
+}
+
+.card {
+    background-color: #181a1b;
 }
 
 [class*='mdl-shadow'] {
